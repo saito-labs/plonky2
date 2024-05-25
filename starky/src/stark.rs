@@ -109,7 +109,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
         let trace_info = FriPolynomialInfo::from_range(oracles.len(), 0..Self::COLUMNS);
         oracles.push(FriOracleInfo {
             num_polys: Self::COLUMNS,
-            blinding: false,
         });
 
         let num_lookup_columns = self.num_lookup_helper_columns(config);
@@ -118,7 +117,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
             let aux_polys = FriPolynomialInfo::from_range(oracles.len(), 0..num_auxiliary_polys);
             oracles.push(FriOracleInfo {
                 num_polys: num_auxiliary_polys,
-                blinding: false,
             });
             aux_polys
         } else {
@@ -131,7 +129,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
                 FriPolynomialInfo::from_range(oracles.len(), 0..num_quotient_polys);
             oracles.push(FriOracleInfo {
                 num_polys: num_quotient_polys,
-                blinding: false,
             });
             quotient_polys
         } else {
@@ -184,7 +181,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
         let trace_info = FriPolynomialInfo::from_range(oracles.len(), 0..Self::COLUMNS);
         oracles.push(FriOracleInfo {
             num_polys: Self::COLUMNS,
-            blinding: false,
         });
 
         let num_lookup_columns = self.num_lookup_helper_columns(config);
@@ -193,7 +189,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
             let aux_polys = FriPolynomialInfo::from_range(oracles.len(), 0..num_auxiliary_polys);
             oracles.push(FriOracleInfo {
                 num_polys: num_auxiliary_polys,
-                blinding: false,
             });
             aux_polys
         } else {
@@ -206,7 +201,6 @@ pub trait Stark<F: RichField + Extendable<D>, const D: usize>: Sync {
                 FriPolynomialInfo::from_range(oracles.len(), 0..num_quotient_polys);
             oracles.push(FriOracleInfo {
                 num_polys: num_quotient_polys,
-                blinding: false,
             });
             quotient_polys
         } else {

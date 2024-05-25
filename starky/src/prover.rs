@@ -62,7 +62,6 @@ where
         PolynomialBatch::<F, C, D>::from_values(
             trace_poly_values.clone(),
             rate_bits,
-            false,
             cap_height,
             timing,
             None,
@@ -185,7 +184,6 @@ where
             PolynomialBatch::from_values(
                 aux_polys,
                 rate_bits,
-                false,
                 config.fri_config.cap_height,
                 timing,
                 None,
@@ -266,7 +264,6 @@ where
             PolynomialBatch::from_coeffs(
                 all_quotient_chunks,
                 rate_bits,
-                false,
                 config.fri_config.cap_height,
                 timing,
                 None,

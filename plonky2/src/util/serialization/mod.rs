@@ -46,7 +46,6 @@ use crate::plonk::circuit_data::{
     VerifierCircuitData, VerifierCircuitTarget, VerifierOnlyCircuitData,
 };
 use crate::plonk::config::{GenericConfig, GenericHashOut, Hasher};
-use crate::plonk::plonk_common::salt_size;
 use crate::plonk::proof::{
     CompressedProof, CompressedProofWithPublicInputs, OpeningSet, OpeningSetTarget, Proof,
     ProofTarget, ProofWithPublicInputs, ProofWithPublicInputsTarget,
@@ -437,7 +436,6 @@ pub trait Read {
         C: GenericConfig<D, F = F>,
     {
         let config = &common_data.config;
-        let salt = salt_size(common_data.fri_params.hiding);
         let mut evals_proofs = Vec::with_capacity(4);
 
         let constants_sigmas_v =
@@ -445,20 +443,19 @@ pub trait Read {
         let constants_sigmas_p = self.read_merkle_proof()?;
         evals_proofs.push((constants_sigmas_v, constants_sigmas_p));
 
-        let wires_v = self.read_field_vec(config.num_wires + salt)?;
+        let wires_v = self.read_field_vec(config.num_wires)?;
         let wires_p = self.read_merkle_proof()?;
         evals_proofs.push((wires_v, wires_p));
 
         let zs_partial_v = self.read_field_vec(
             config.num_challenges
                 * (1 + common_data.num_partial_products + common_data.num_lookup_polys)
-                + salt,
         )?;
         let zs_partial_p = self.read_merkle_proof()?;
         evals_proofs.push((zs_partial_v, zs_partial_p));
 
         let quotient_v =
-            self.read_field_vec(config.num_challenges * common_data.quotient_degree_factor + salt)?;
+            self.read_field_vec(config.num_challenges * common_data.quotient_degree_factor)?;
         let quotient_p = self.read_merkle_proof()?;
         evals_proofs.push((quotient_v, quotient_p));
 
@@ -660,7 +657,6 @@ pub trait Read {
         let num_challenges = self.read_usize()?;
         let max_quotient_degree_factor = self.read_usize()?;
         let use_base_arithmetic_gate = self.read_bool()?;
-        let zero_knowledge = self.read_bool()?;
         let fri_config = self.read_fri_config()?;
 
         Ok(CircuitConfig {
@@ -671,7 +667,6 @@ pub trait Read {
             num_challenges,
             max_quotient_degree_factor,
             use_base_arithmetic_gate,
-            zero_knowledge,
             fri_config,
         })
     }
@@ -680,13 +675,11 @@ pub trait Read {
         let config = self.read_fri_config()?;
         let reduction_arity_bits = self.read_usize_vec()?;
         let degree_bits = self.read_usize()?;
-        let hiding = self.read_bool()?;
 
         Ok(FriParams {
             config,
             reduction_arity_bits,
             degree_bits,
-            hiding,
         })
     }
 
@@ -735,14 +728,12 @@ pub trait Read {
         let merkle_tree = self.read_merkle_tree()?;
         let degree_log = self.read_usize()?;
         let rate_bits = self.read_usize()?;
-        let blinding = self.read_bool()?;
 
         Ok(PolynomialBatch {
             polynomials,
             merkle_tree,
             degree_log,
             rate_bits,
-            blinding,
         })
     }
 
@@ -1675,13 +1666,11 @@ pub trait Write {
             config,
             reduction_arity_bits,
             degree_bits,
-            hiding,
         } = fri_params;
 
         self.write_fri_config(config)?;
         self.write_usize_vec(reduction_arity_bits.as_slice())?;
         self.write_usize(*degree_bits)?;
-        self.write_bool(*hiding)?;
 
         Ok(())
     }
@@ -1695,7 +1684,6 @@ pub trait Write {
             num_challenges,
             max_quotient_degree_factor,
             use_base_arithmetic_gate,
-            zero_knowledge,
             fri_config,
         } = config;
 
@@ -1706,7 +1694,6 @@ pub trait Write {
         self.write_usize(*num_challenges)?;
         self.write_usize(*max_quotient_degree_factor)?;
         self.write_bool(*use_base_arithmetic_gate)?;
-        self.write_bool(*zero_knowledge)?;
         self.write_fri_config(fri_config)?;
 
         Ok(())
@@ -1757,7 +1744,6 @@ pub trait Write {
         self.write_merkle_tree(&poly_batch.merkle_tree)?;
         self.write_usize(poly_batch.degree_log)?;
         self.write_usize(poly_batch.rate_bits)?;
-        self.write_bool(poly_batch.blinding)?;
 
         Ok(())
     }

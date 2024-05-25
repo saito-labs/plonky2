@@ -175,7 +175,6 @@ where
         PolynomialBatch::<F, C, D>::from_values(
             wires_values,
             config.fri_config.rate_bits,
-            config.zero_knowledge && PlonkOracle::WIRES.blinding,
             config.fri_config.cap_height,
             timing,
             prover_data.fft_root_table.as_ref(),
@@ -242,7 +241,6 @@ where
         PolynomialBatch::from_values(
             zs_partial_products_lookups,
             config.fri_config.rate_bits,
-            config.zero_knowledge && PlonkOracle::ZS_PARTIAL_PRODUCTS.blinding,
             config.fri_config.cap_height,
             timing,
             prover_data.fft_root_table.as_ref(),
@@ -290,7 +288,6 @@ where
         PolynomialBatch::<F, C, D>::from_coeffs(
             all_quotient_poly_chunks,
             config.fri_config.rate_bits,
-            config.zero_knowledge && PlonkOracle::QUOTIENT.blinding,
             config.fri_config.cap_height,
             timing,
             prover_data.fft_root_table.as_ref(),

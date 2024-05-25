@@ -77,9 +77,6 @@ pub struct CircuitConfig {
     /// The number of challenge points to generate, for IOPs that have soundness errors of (roughly)
     /// `degree / |F|`.
     pub num_challenges: usize,
-    /// A boolean to activate the zero-knowledge property. When this is set to `false`, proofs *may*
-    /// leak additional information.
-    pub zero_knowledge: bool,
     /// A cap on the quotient polynomial's degree factor. The actual degree factor is derived
     /// systematically, but will never exceed this value.
     pub max_quotient_degree_factor: usize,
@@ -106,7 +103,6 @@ impl CircuitConfig {
             use_base_arithmetic_gate: true,
             security_bits: 100,
             num_challenges: 2,
-            zero_knowledge: false,
             max_quotient_degree_factor: 8,
             fri_config: FriConfig {
                 rate_bits: 3,
@@ -128,13 +124,6 @@ impl CircuitConfig {
     pub fn wide_ecc_config() -> Self {
         Self {
             num_wires: 234,
-            ..Self::standard_recursion_config()
-        }
-    }
-
-    pub fn standard_recursion_zk_config() -> Self {
-        CircuitConfig {
-            zero_knowledge: true,
             ..Self::standard_recursion_config()
         }
     }
@@ -579,19 +568,15 @@ impl<F: RichField + Extendable<D>, const D: usize> CommonCircuitData<F, D> {
         vec![
             FriOracleInfo {
                 num_polys: self.num_preprocessed_polys(),
-                blinding: PlonkOracle::CONSTANTS_SIGMAS.blinding,
             },
             FriOracleInfo {
                 num_polys: self.config.num_wires,
-                blinding: PlonkOracle::WIRES.blinding,
             },
             FriOracleInfo {
                 num_polys: self.num_zs_partial_products_polys() + self.num_all_lookup_polys(),
-                blinding: PlonkOracle::ZS_PARTIAL_PRODUCTS.blinding,
             },
             FriOracleInfo {
                 num_polys: self.num_quotient_polys(),
-                blinding: PlonkOracle::QUOTIENT.blinding,
             },
         ]
     }

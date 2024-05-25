@@ -130,7 +130,6 @@ pub(crate) fn fri_combine_initial<
     alpha: F::Extension,
     subgroup_x: F,
     precomputed_reduced_evals: &PrecomputedReducedOpenings<F, D>,
-    params: &FriParams,
 ) -> F::Extension {
     assert!(D > 1, "Not implemented for D=1.");
     let subgroup_x = F::Extension::from_basefield(subgroup_x);
@@ -146,9 +145,7 @@ pub(crate) fn fri_combine_initial<
         let evals = polynomials
             .iter()
             .map(|p| {
-                let poly_blinding = instance.oracles[p.oracle_index].blinding;
-                let salted = params.hiding && poly_blinding;
-                proof.unsalted_eval(p.oracle_index, p.polynomial_index, salted)
+                proof.eval(p.oracle_index, p.polynomial_index)
             })
             .map(F::Extension::from_basefield);
         let reduced_evals = alpha.reduce(evals);
@@ -194,7 +191,6 @@ fn fri_verifier_query_round<
         challenges.fri_alpha,
         subgroup_x,
         precomputed_reduced_evals,
-        params,
     );
 
     for (i, &arity_bits) in params.reduction_arity_bits.iter().enumerate() {

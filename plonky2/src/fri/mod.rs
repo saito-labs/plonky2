@@ -45,7 +45,7 @@ impl FriConfig {
         1.0 / ((1 << self.rate_bits) as f64)
     }
 
-    pub fn fri_params(&self, degree_bits: usize, hiding: bool) -> FriParams {
+    pub fn fri_params(&self, degree_bits: usize) -> FriParams {
         let reduction_arity_bits = self.reduction_strategy.reduction_arity_bits(
             degree_bits,
             self.rate_bits,
@@ -54,7 +54,6 @@ impl FriConfig {
         );
         FriParams {
             config: self.clone(),
-            hiding,
             degree_bits,
             reduction_arity_bits,
         }
@@ -71,9 +70,6 @@ impl FriConfig {
 pub struct FriParams {
     /// User-specified FRI configuration.
     pub config: FriConfig,
-
-    /// Whether to use a hiding variant of Merkle trees (where random salts are added to leaves).
-    pub hiding: bool,
 
     /// The degree of the purported codeword, measured in bits.
     pub degree_bits: usize,

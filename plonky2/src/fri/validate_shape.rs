@@ -6,7 +6,6 @@ use crate::fri::structure::FriInstanceInfo;
 use crate::fri::FriParams;
 use crate::hash::hash_types::RichField;
 use crate::plonk::config::GenericConfig;
-use crate::plonk::plonk_common::salt_size;
 
 pub(crate) fn validate_fri_proof_shape<F, C, const D: usize>(
     proof: &FriProof<F, C::Hasher, D>,
@@ -41,7 +40,7 @@ where
             .iter()
             .zip(&instance.oracles)
         {
-            ensure!(leaf.len() == oracle.num_polys + salt_size(oracle.blinding && params.hiding));
+            ensure!(leaf.len() == oracle.num_polys);
             ensure!(merkle_proof.len() + cap_height == params.lde_bits());
         }
 

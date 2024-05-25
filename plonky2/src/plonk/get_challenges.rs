@@ -218,7 +218,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
                 *fri_alpha,
                 subgroup_x,
                 &precomputed_reduced_evals,
-                &common_data.fri_params,
             );
             for (i, &arity_bits) in common_data
                 .fri_params

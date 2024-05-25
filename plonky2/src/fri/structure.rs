@@ -30,7 +30,6 @@ pub struct FriInstanceInfoTarget<const D: usize> {
 #[derive(Copy, Clone, Debug)]
 pub struct FriOracleInfo {
     pub num_polys: usize,
-    pub blinding: bool,
 }
 
 /// A batch of openings at a particular point.

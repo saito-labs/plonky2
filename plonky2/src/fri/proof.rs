@@ -16,7 +16,6 @@ use crate::hash::path_compression::{compress_merkle_proofs, decompress_merkle_pr
 use crate::iop::ext_target::ExtensionTarget;
 use crate::iop::target::Target;
 use crate::plonk::config::Hasher;
-use crate::plonk::plonk_common::salt_size;
 use crate::plonk::proof::{FriInferredElements, ProofChallenges};
 
 /// Evaluations and Merkle proof produced by the prover in a FRI query step.
@@ -42,13 +41,13 @@ pub struct FriInitialTreeProof<F: RichField, H: Hasher<F>> {
 }
 
 impl<F: RichField, H: Hasher<F>> FriInitialTreeProof<F, H> {
-    pub(crate) fn unsalted_eval(&self, oracle_index: usize, poly_index: usize, salted: bool) -> F {
-        self.unsalted_evals(oracle_index, salted)[poly_index]
+    pub(crate) fn eval(&self, oracle_index: usize, poly_index: usize) -> F {
+        self.evals(oracle_index)[poly_index]
     }
 
-    fn unsalted_evals(&self, oracle_index: usize, salted: bool) -> &[F] {
+    fn evals(&self, oracle_index: usize) -> &[F] {
         let evals = &self.evals_proofs[oracle_index].0;
-        &evals[..evals.len() - salt_size(salted)]
+        &evals[..evals.len()]
     }
 }
 
@@ -58,18 +57,17 @@ pub struct FriInitialTreeProofTarget {
 }
 
 impl FriInitialTreeProofTarget {
-    pub(crate) fn unsalted_eval(
+    pub(crate) fn eval(
         &self,
         oracle_index: usize,
         poly_index: usize,
-        salted: bool,
     ) -> Target {
-        self.unsalted_evals(oracle_index, salted)[poly_index]
+        self.evals(oracle_index)[poly_index]
     }
 
-    fn unsalted_evals(&self, oracle_index: usize, salted: bool) -> &[Target] {
+    fn evals(&self, oracle_index: usize) -> &[Target] {
         let evals = &self.evals_proofs[oracle_index].0;
-        &evals[..evals.len() - salt_size(salted)]
+        &evals[..evals.len()]
     }
 }
 

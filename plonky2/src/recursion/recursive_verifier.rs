@@ -6,7 +6,6 @@ use crate::hash::hash_types::{HashOutTarget, RichField};
 use crate::plonk::circuit_builder::CircuitBuilder;
 use crate::plonk::circuit_data::{CommonCircuitData, VerifierCircuitTarget};
 use crate::plonk::config::{AlgebraicHasher, GenericConfig};
-use crate::plonk::plonk_common::salt_size;
 use crate::plonk::proof::{
     OpeningSetTarget, ProofChallengesTarget, ProofTarget, ProofWithPublicInputsTarget,
 };
@@ -151,15 +150,14 @@ impl<F: RichField + Extendable<D>, const D: usize> CircuitBuilder<F, D> {
         let fri_params = &common_data.fri_params;
         let cap_height = fri_params.config.cap_height;
 
-        let salt = salt_size(common_data.fri_params.hiding);
         let num_leaves_per_oracle = &mut vec![
             common_data.num_preprocessed_polys(),
-            config.num_wires + salt,
-            common_data.num_zs_partial_products_polys() + common_data.num_all_lookup_polys() + salt,
+            config.num_wires,
+            common_data.num_zs_partial_products_polys() + common_data.num_all_lookup_polys(),
         ];
 
         if common_data.num_quotient_polys() > 0 {
-            num_leaves_per_oracle.push(common_data.num_quotient_polys() + salt);
+            num_leaves_per_oracle.push(common_data.num_quotient_polys());
         }
 
         ProofTarget {
@@ -225,7 +223,7 @@ mod tests {
         const D: usize = 2;
         type C = PoseidonGoldilocksConfig;
         type F = <C as GenericConfig<D>>::F;
-        let config = CircuitConfig::standard_recursion_zk_config();
+        let config = CircuitConfig::standard_recursion_config();
 
         let (proof, vd, common_data) = dummy_proof::<F, C, D>(&config, 4_000)?;
         let (proof, vd, common_data) =
@@ -241,7 +239,7 @@ mod tests {
         const D: usize = 2;
         type C = PoseidonGoldilocksConfig;
         type F = <C as GenericConfig<D>>::F;
-        let config = CircuitConfig::standard_recursion_zk_config();
+        let config = CircuitConfig::standard_recursion_config();
 
         let (proof, vd, common_data) = dummy_lookup_proof::<F, C, D>(&config, 10)?;
         let (proof, vd, common_data) =

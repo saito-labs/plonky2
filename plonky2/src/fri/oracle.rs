@@ -22,9 +22,6 @@ use crate::util::reducing::ReducingFactor;
 use crate::util::timing::TimingTree;
 use crate::util::{log2_strict, reverse_bits, reverse_index_bits_in_place, transpose};
 
-/// Four (~64 bit) field elements gives ~128 bit security.
-pub const SALT_SIZE: usize = 4;
-
 /// Represents a FRI oracle, i.e. a batch of polynomials which have been Merklized.
 #[derive(Eq, PartialEq, Debug)]
 pub struct PolynomialBatch<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
@@ -33,7 +30,6 @@ pub struct PolynomialBatch<F: RichField + Extendable<D>, C: GenericConfig<D, F =
     pub merkle_tree: MerkleTree<F, C::Hasher>,
     pub degree_log: usize,
     pub rate_bits: usize,
-    pub blinding: bool,
 }
 
 impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize> Default
@@ -45,7 +41,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize> D
             merkle_tree: MerkleTree::default(),
             degree_log: 0,
             rate_bits: 0,
-            blinding: false,
         }
     }
 }
@@ -57,7 +52,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
     pub fn from_values(
         values: Vec<PolynomialValues<F>>,
         rate_bits: usize,
-        blinding: bool,
         cap_height: usize,
         timing: &mut TimingTree,
         fft_root_table: Option<&FftRootTable<F>>,
@@ -71,7 +65,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
         Self::from_coeffs(
             coeffs,
             rate_bits,
-            blinding,
             cap_height,
             timing,
             fft_root_table,
@@ -82,7 +75,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
     pub fn from_coeffs(
         polynomials: Vec<PolynomialCoeffs<F>>,
         rate_bits: usize,
-        blinding: bool,
         cap_height: usize,
         timing: &mut TimingTree,
         fft_root_table: Option<&FftRootTable<F>>,
@@ -90,8 +82,8 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
         let degree = polynomials[0].len();
         let lde_values = timed!(
             timing,
-            "FFT + blinding",
-            Self::lde_values(&polynomials, rate_bits, blinding, fft_root_table)
+            "FFT",
+            Self::lde_values(&polynomials, rate_bits, fft_root_table)
         );
 
         let mut leaves = timed!(timing, "transpose LDEs", transpose(&lde_values));
@@ -107,20 +99,15 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
             merkle_tree,
             degree_log: log2_strict(degree),
             rate_bits,
-            blinding,
         }
     }
 
     fn lde_values(
         polynomials: &[PolynomialCoeffs<F>],
         rate_bits: usize,
-        blinding: bool,
         fft_root_table: Option<&FftRootTable<F>>,
     ) -> Vec<Vec<F>> {
         let degree = polynomials[0].len();
-
-        // If blinding, salt with two random elements to each leaf vector.
-        let salt_size = if blinding { SALT_SIZE } else { 0 };
 
         polynomials
             .par_iter()
@@ -130,11 +117,6 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
                     .coset_fft_with_options(F::coset_shift(), Some(rate_bits), fft_root_table)
                     .values
             })
-            .chain(
-                (0..salt_size)
-                    .into_par_iter()
-                    .map(|_| F::rand_vec(degree << rate_bits)),
-            )
             .collect()
     }
 
@@ -143,7 +125,7 @@ impl<F: RichField + Extendable<D>, C: GenericConfig<D, F = F>, const D: usize>
         let index = index * step;
         let index = reverse_bits(index, self.degree_log + self.rate_bits);
         let slice = &self.merkle_tree.leaves[index];
-        &slice[..slice.len() - if self.blinding { SALT_SIZE } else { 0 }]
+        &slice[..slice.len()]
     }
 
     /// Like `get_lde_values`, but fetches LDE values from a batch of `P::WIDTH` points, and returns

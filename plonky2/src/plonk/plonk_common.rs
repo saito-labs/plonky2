@@ -6,7 +6,6 @@ use alloc::{vec, vec::Vec};
 use crate::field::extension::Extendable;
 use crate::field::packed::PackedField;
 use crate::field::types::Field;
-use crate::fri::oracle::SALT_SIZE;
 use crate::gates::arithmetic_base::ArithmeticGate;
 use crate::hash::hash_types::RichField;
 use crate::iop::ext_target::ExtensionTarget;
@@ -14,38 +13,25 @@ use crate::iop::target::Target;
 use crate::plonk::circuit_builder::CircuitBuilder;
 use crate::util::reducing::ReducingFactorTarget;
 
-/// Holds the Merkle tree index and blinding flag of a set of polynomials used in FRI.
+/// Holds the Merkle tree index of a set of polynomials used in FRI.
 #[derive(Debug, Copy, Clone)]
 pub struct PlonkOracle {
     pub(crate) index: usize,
-    pub(crate) blinding: bool,
 }
 
 impl PlonkOracle {
     pub const CONSTANTS_SIGMAS: PlonkOracle = PlonkOracle {
         index: 0,
-        blinding: false,
     };
     pub const WIRES: PlonkOracle = PlonkOracle {
         index: 1,
-        blinding: true,
     };
     pub const ZS_PARTIAL_PRODUCTS: PlonkOracle = PlonkOracle {
         index: 2,
-        blinding: true,
     };
     pub const QUOTIENT: PlonkOracle = PlonkOracle {
         index: 3,
-        blinding: true,
     };
-}
-
-pub const fn salt_size(salted: bool) -> usize {
-    if salted {
-        SALT_SIZE
-    } else {
-        0
-    }
 }
 
 /// Evaluate the polynomial which vanishes on any multiplicative subgroup of a given order `n`.
