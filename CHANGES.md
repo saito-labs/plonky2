@@ -74,5 +74,5 @@ inverse on the Goldilocks Field and hasing performance. Upon running the
 benchmarks on this implementation with removed ZK components and the original
 repository with the `zero_knowledge` parameter set to false, the results showed
 that this implementaiton achieves very marginal speedups from the original
-implementation. The results of the benchmarks can be found in the `benches`
-directory (to be added).
+implementation. The results of the benchmarks can be found in the `bench_results`
+directory.
