@@ -1,0 +1,861 @@
+(base) logno@Logans-SouljaMac plonky2 % cargo bench --benches
+    Finished `bench` profile [optimized] target(s) in 0.32s
+     Running unittests src/lib.rs (target/release/deps/plonky2-f18370e734d5cbc8)
+
+running 88 tests
+test gadgets::arithmetic_extension::tests::test_div_extension ... ignored
+test gadgets::arithmetic_extension::tests::test_mul_algebra ... ignored
+test gadgets::arithmetic_extension::tests::test_mul_many ... ignored
+test gadgets::interpolation::tests::test_interpolate ... ignored
+test gadgets::random_access::tests::test_random_access ... ignored
+test gadgets::select::tests::test_select ... ignored
+test gadgets::split_base::tests::test_base_sum ... ignored
+test gadgets::split_base::tests::test_split_base ... ignored
+test gates::arithmetic_base::tests::eval_fns ... ignored
+test gates::arithmetic_base::tests::low_degree ... ignored
+test gates::arithmetic_extension::tests::eval_fns ... ignored
+test gates::arithmetic_extension::tests::low_degree ... ignored
+test gates::base_sum::tests::eval_fns ... ignored
+test gates::base_sum::tests::low_degree ... ignored
+test gates::constant::tests::eval_fns ... ignored
+test gates::constant::tests::low_degree ... ignored
+test gates::coset_interpolation::tests::eval_fns ... ignored
+test gates::coset_interpolation::tests::low_degree ... ignored
+test gates::coset_interpolation::tests::test_degree_and_wires_minimized ... ignored
+test gates::coset_interpolation::tests::test_gate_constraint ... ignored
+test gates::coset_interpolation::tests::test_num_wires_constraints ... ignored
+test gates::coset_interpolation::tests::wire_indices_degree2 ... ignored
+test gates::coset_interpolation::tests::wire_indices_degree_3 ... ignored
+test gates::coset_interpolation::tests::wire_indices_degree_n ... ignored
+test gates::exponentiation::tests::eval_fns ... ignored
+test gates::exponentiation::tests::low_degree ... ignored
+test gates::exponentiation::tests::test_gate_constraint ... ignored
+test gates::exponentiation::tests::wire_indices ... ignored
+test gates::multiplication_extension::tests::eval_fns ... ignored
+test gates::multiplication_extension::tests::low_degree ... ignored
+test gates::noop::tests::eval_fns ... ignored
+test gates::noop::tests::low_degree ... ignored
+test gates::poseidon::tests::eval_fns ... ignored
+test gates::poseidon::tests::generated_output ... ignored
+test gates::poseidon::tests::low_degree ... ignored
+test gates::poseidon::tests::wire_indices ... ignored
+test gates::poseidon_mds::tests::eval_fns ... ignored
+test gates::poseidon_mds::tests::low_degree ... ignored
+test gates::public_input::tests::eval_fns ... ignored
+test gates::public_input::tests::low_degree ... ignored
+test gates::random_access::tests::eval_fns ... ignored
+test gates::random_access::tests::low_degree ... ignored
+test gates::random_access::tests::test_gate_constraint ... ignored
+test gates::reducing::tests::eval_fns ... ignored
+test gates::reducing::tests::low_degree ... ignored
+test gates::reducing_extension::tests::eval_fns ... ignored
+test gates::reducing_extension::tests::low_degree ... ignored
+test hash::merkle_proofs::tests::test_recursive_merkle_proof ... ignored
+test hash::merkle_tree::tests::test_cap_height_eq_log2_len ... ignored
+test hash::merkle_tree::tests::test_cap_height_too_big - should panic ... ignored
+test hash::merkle_tree::tests::test_merkle_trees ... ignored
+test hash::path_compression::tests::test_path_compression ... ignored
+test hash::poseidon_goldilocks::tests::consistency ... ignored
+test hash::poseidon_goldilocks::tests::test_vectors ... ignored
+test iop::challenger::tests::no_duplicate_challenges ... ignored
+test iop::challenger::tests::test_consistency ... ignored
+test lookup_test::test_big_lut ... ignored
+test lookup_test::test_different_inputs ... ignored
+test lookup_test::test_lookup_table_not_used - should panic ... ignored
+test lookup_test::test_lookup_without_table - should panic ... ignored
+test lookup_test::test_many_lookups ... ignored
+test lookup_test::test_many_lookups_on_big_lut ... ignored
+test lookup_test::test_no_lookup ... ignored
+test lookup_test::test_one_lookup ... ignored
+test lookup_test::test_same_luts ... ignored
+test lookup_test::test_two_luts ... ignored
+test plonk::proof::tests::test_proof_compression ... ignored
+test plonk::proof::tests::test_proof_compression_lookup ... ignored
+test recursion::conditional_recursive_verifier::tests::test_conditional_recursive_verifier ... ignored
+test recursion::cyclic_recursion::tests::test_cyclic_recursion ... ignored
+test recursion::recursive_verifier::tests::test_recursive_recursive_verifier ... ignored
+test recursion::recursive_verifier::tests::test_recursive_verifier ... ignored
+test recursion::recursive_verifier::tests::test_recursive_verifier_multi_hash ... ignored
+test recursion::recursive_verifier::tests::test_recursive_verifier_one_lookup ... ignored
+test recursion::recursive_verifier::tests::test_recursive_verifier_too_many_rows ... ignored
+test recursion::recursive_verifier::tests::test_recursive_verifier_two_luts ... ignored
+test recursion::recursive_verifier::tests::test_size_optimized_recursion ... ignored
+test util::partial_products::tests::test_partial_products ... ignored
+test util::reducing::tests::test_reduce_gadget_100 ... ignored
+test util::reducing::tests::test_reduce_gadget_base_100 ... ignored
+test util::reducing::tests::test_reduce_gadget_even ... ignored
+test util::reducing::tests::test_reduce_gadget_odd ... ignored
+test util::tests::test_reverse_bits ... ignored
+test util::tests::test_reverse_index_bits ... ignored
+test util::tests::test_reverse_index_bits_in_place_big_even ... ignored
+test util::tests::test_reverse_index_bits_in_place_big_odd ... ignored
+test util::tests::test_reverse_index_bits_in_place_small ... ignored
+test util::tests::test_reverse_index_bits_in_place_trivial ... ignored
+
+test result: ok. 0 passed; 0 failed; 88 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/generate_constants.rs (target/release/deps/generate_constants-addd6595ecc91c4b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running benches/ffts.rs (target/release/deps/ffts-149d9ca8c4753f5e)
+Benchmarking fft<GoldilocksField>/8192: Collecting 100 samples in estimated 5.94
+fft<GoldilocksField>/8192
+                        time:   [393.19 µs 406.93 µs 422.79 µs]
+                        change: [-10.304% -6.1175% -1.8090%] (p = 0.01 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+Benchmarking fft<GoldilocksField>/16384: Collecting 100 samples in estimated 7.5
+fft<GoldilocksField>/16384
+                        time:   [730.96 µs 765.96 µs 802.98 µs]
+                        change: [-22.153% -16.789% -10.976%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+Benchmarking fft<GoldilocksField>/32768: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.1s, enable flat sampling, or reduce sample count to 50.
+Benchmarking fft<GoldilocksField>/32768: Collecting 100 samples in estimated 9.1
+fft<GoldilocksField>/32768
+                        time:   [1.5887 ms 1.6679 ms 1.7632 ms]
+                        change: [-22.155% -17.834% -13.442%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+Benchmarking fft<GoldilocksField>/65536: Collecting 100 samples in estimated 5.0
+fft<GoldilocksField>/65536
+                        time:   [3.8520 ms 4.1332 ms 4.4579 ms]
+                        change: [-8.6617% -1.0647% +7.1270%] (p = 0.79 > 0.05)
+                        No change in performance detected.
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking lde<GoldilocksField>/8192: Collecting 100 samples in estimated 5.89
+lde<GoldilocksField>/8192
+                        time:   [356.28 µs 379.05 µs 406.04 µs]
+                        change: [-17.235% -11.566% -5.6816%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high severe
+Benchmarking lde<GoldilocksField>/16384: Collecting 100 samples in estimated 6.4
+lde<GoldilocksField>/16384
+                        time:   [630.77 µs 663.71 µs 699.08 µs]
+                        change: [-21.707% -17.353% -13.539%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+Benchmarking lde<GoldilocksField>/32768: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 6.4s, enable flat sampling, or reduce sample count to 60.
+Benchmarking lde<GoldilocksField>/32768: Collecting 100 samples in estimated 6.4
+lde<GoldilocksField>/32768
+                        time:   [1.3101 ms 1.3451 ms 1.3824 ms]
+                        change: [-43.204% -38.535% -33.969%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+Benchmarking lde<GoldilocksField>/65536: Collecting 100 samples in estimated 5.1
+lde<GoldilocksField>/65536
+                        time:   [2.8202 ms 2.9019 ms 2.9873 ms]
+                        change: [-37.802% -34.592% -31.511%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+
+     Running benches/field_arithmetic.rs (target/release/deps/field_arithmetic-a1cdaa3d52eb1bfa)
+Benchmarking mul-throughput<GoldilocksField>: Collecting 100 samples in estimate
+mul-throughput<GoldilocksField>
+                        time:   [193.35 ns 198.20 ns 203.45 ns]
+                        change: [-51.767% -42.073% -32.672%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 9 outliers among 100 measurements (9.00%)
+  9 (9.00%) high mild
+
+Benchmarking mul-latency<GoldilocksField>: Collecting 100 samples in estimated 5
+mul-latency<GoldilocksField>
+                        time:   [375.75 ns 378.34 ns 381.13 ns]
+                        change: [-23.687% -16.614% -10.472%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+
+Benchmarking sqr-throughput<GoldilocksField>: Collecting 100 samples in estimate
+sqr-throughput<GoldilocksField>
+                        time:   [171.09 ns 174.25 ns 177.62 ns]
+                        change: [-44.037% -38.234% -32.923%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  2 (2.00%) high mild
+
+Benchmarking sqr-latency<GoldilocksField>: Collecting 100 samples in estimated 5
+sqr-latency<GoldilocksField>
+                        time:   [375.12 ns 377.34 ns 379.70 ns]
+                        change: [-38.227% -28.601% -19.404%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 6 outliers among 100 measurements (6.00%)
+  5 (5.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking add-throughput<GoldilocksField>: Collecting 100 samples in estimate
+add-throughput<GoldilocksField>
+                        time:   [105.18 ns 108.24 ns 111.61 ns]
+                        change: [-48.062% -42.634% -37.116%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking add-latency<GoldilocksField>: Collecting 100 samples in estimated 5
+add-latency<GoldilocksField>
+                        time:   [113.49 ns 114.82 ns 116.29 ns]
+                        change: [-23.302% -19.574% -15.519%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking try_inverse<GoldilocksField>: Collecting 100 samples in estimated 5
+try_inverse<GoldilocksField>
+                        time:   [304.69 ns 306.55 ns 308.45 ns]
+                        change: [-30.058% -18.755% -10.164%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+
+Benchmarking batch_multiplicative_inverse-tiny<GoldilocksField>: Warming up for
+Benchmarking batch_multiplicative_inverse-tiny<GoldilocksField>: Collecting 100
+batch_multiplicative_inverse-tiny<GoldilocksField>
+                        time:   [344.24 ns 346.64 ns 349.48 ns]
+                        change: [-6.6873% -4.9148% -3.1646%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 6 outliers among 100 measurements (6.00%)
+  3 (3.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-small<GoldilocksField>: Warming up for
+Benchmarking batch_multiplicative_inverse-small<GoldilocksField>: Collecting 100
+batch_multiplicative_inverse-small<GoldilocksField>
+                        time:   [385.63 ns 389.37 ns 393.16 ns]
+                        change: [-22.967% -15.978% -10.454%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-medium<GoldilocksField>: Warming up fo
+Benchmarking batch_multiplicative_inverse-medium<GoldilocksField>: Collecting 10
+batch_multiplicative_inverse-medium<GoldilocksField>
+                        time:   [499.51 ns 510.17 ns 522.69 ns]
+                        change: [-25.624% -18.678% -13.258%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 6 outliers among 100 measurements (6.00%)
+  4 (4.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-large<GoldilocksField>: Warming up for
+Benchmarking batch_multiplicative_inverse-large<GoldilocksField>: Collecting 100
+batch_multiplicative_inverse-large<GoldilocksField>
+                        time:   [3.2004 µs 3.4261 µs 3.7058 µs]
+                        change: [-45.879% -38.319% -31.408%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 11 outliers among 100 measurements (11.00%)
+  8 (8.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-huge<GoldilocksField>: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 9.9s, or reduce sample count to 50.
+Benchmarking batch_multiplicative_inverse-huge<GoldilocksField>: Collecting 100
+batch_multiplicative_inverse-huge<GoldilocksField>
+                        time:   [613.87 µs 706.00 µs 818.58 µs]
+                        change: [-35.788% -23.546% -8.8936%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 14 outliers among 100 measurements (14.00%)
+  4 (4.00%) high mild
+  10 (10.00%) high severe
+
+Benchmarking mul-throughput<QuadraticExtension<GoldilocksField>>: Warming up for
+Benchmarking mul-throughput<QuadraticExtension<GoldilocksField>>: Collecting 100
+mul-throughput<QuadraticExtension<GoldilocksField>>
+                        time:   [739.79 ns 764.00 ns 793.12 ns]
+                        change: [-45.483% -42.147% -38.823%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+
+Benchmarking mul-latency<QuadraticExtension<GoldilocksField>>: Warming up for 3.
+Benchmarking mul-latency<QuadraticExtension<GoldilocksField>>: Collecting 100 sa
+mul-latency<QuadraticExtension<GoldilocksField>>
+                        time:   [879.32 ns 916.94 ns 960.11 ns]
+                        change: [-38.735% -29.759% -22.468%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  2 (2.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking sqr-throughput<QuadraticExtension<GoldilocksField>>: Warming up for
+Benchmarking sqr-throughput<QuadraticExtension<GoldilocksField>>: Collecting 100
+sqr-throughput<QuadraticExtension<GoldilocksField>>
+                        time:   [604.03 ns 626.23 ns 649.50 ns]
+                        change: [-65.975% -51.959% -37.679%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+
+Benchmarking sqr-latency<QuadraticExtension<GoldilocksField>>: Warming up for 3.
+Benchmarking sqr-latency<QuadraticExtension<GoldilocksField>>: Collecting 100 sa
+sqr-latency<QuadraticExtension<GoldilocksField>>
+                        time:   [811.01 ns 818.20 ns 826.45 ns]
+                        change: [-29.095% -24.518% -20.391%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 10 outliers among 100 measurements (10.00%)
+  7 (7.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking add-throughput<QuadraticExtension<GoldilocksField>>: Warming up for
+Benchmarking add-throughput<QuadraticExtension<GoldilocksField>>: Collecting 100
+add-throughput<QuadraticExtension<GoldilocksField>>
+                        time:   [205.35 ns 211.59 ns 218.95 ns]
+                        change: [-81.540% -65.827% -39.550%] (p = 0.06 > 0.05)
+                        No change in performance detected.
+Found 9 outliers among 100 measurements (9.00%)
+  6 (6.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking add-latency<QuadraticExtension<GoldilocksField>>: Warming up for 3.
+Benchmarking add-latency<QuadraticExtension<GoldilocksField>>: Collecting 100 sa
+add-latency<QuadraticExtension<GoldilocksField>>
+                        time:   [210.06 ns 212.49 ns 215.21 ns]
+                        change: [-56.947% -46.594% -37.960%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 9 outliers among 100 measurements (9.00%)
+  4 (4.00%) high mild
+  5 (5.00%) high severe
+
+Benchmarking try_inverse<QuadraticExtension<GoldilocksField>>: Warming up for 3.
+Benchmarking try_inverse<QuadraticExtension<GoldilocksField>>: Collecting 100 sa
+try_inverse<QuadraticExtension<GoldilocksField>>
+                        time:   [340.11 ns 343.65 ns 347.34 ns]
+                        change: [-37.167% -24.648% -12.809%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 5 outliers among 100 measurements (5.00%)
+  3 (3.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-tiny<QuadraticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-tiny<QuadraticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-tiny<QuadraticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-tiny<QuadraticExtension<GoldilocksFiel
+batch_multiplicative_inverse-tiny<QuadraticExtension<GoldilocksField>>
+                        time:   [401.19 ns 417.64 ns 439.38 ns]
+                        change: [-31.359% -24.051% -17.577%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 5 outliers among 100 measurements (5.00%)
+  2 (2.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-small<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-small<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-small<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-small<QuadraticExtension<GoldilocksFie
+batch_multiplicative_inverse-small<QuadraticExtension<GoldilocksField>>
+                        time:   [457.68 ns 464.82 ns 472.54 ns]
+                        change: [-31.681% -25.727% -20.711%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-medium<QuadraticExtension<GoldilocksFi
+Benchmarking batch_multiplicative_inverse-medium<QuadraticExtension<GoldilocksFi
+Benchmarking batch_multiplicative_inverse-medium<QuadraticExtension<GoldilocksFi
+Benchmarking batch_multiplicative_inverse-medium<QuadraticExtension<GoldilocksFi
+batch_multiplicative_inverse-medium<QuadraticExtension<GoldilocksField>>
+                        time:   [809.20 ns 825.67 ns 843.76 ns]
+                        change: [-29.448% -26.311% -23.276%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  3 (3.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-large<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-large<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-large<QuadraticExtension<GoldilocksFie
+Benchmarking batch_multiplicative_inverse-large<QuadraticExtension<GoldilocksFie
+batch_multiplicative_inverse-large<QuadraticExtension<GoldilocksField>>
+                        time:   [8.9810 µs 9.3352 µs 9.7255 µs]
+                        change: [-48.768% -43.045% -37.374%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 4 outliers among 100 measurements (4.00%)
+  4 (4.00%) high mild
+
+Benchmarking batch_multiplicative_inverse-huge<QuadraticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-huge<QuadraticExtension<GoldilocksField>>: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 20.4s, or reduce sample count to 20.
+Benchmarking batch_multiplicative_inverse-huge<QuadraticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-huge<QuadraticExtension<GoldilocksFiel
+batch_multiplicative_inverse-huge<QuadraticExtension<GoldilocksField>>
+                        time:   [1.9635 ms 2.1624 ms 2.4057 ms]
+                        change: [-32.923% -24.957% -16.475%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 10 outliers among 100 measurements (10.00%)
+  3 (3.00%) high mild
+  7 (7.00%) high severe
+
+Benchmarking mul-throughput<QuarticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking mul-throughput<QuarticExtension<GoldilocksField>>: Collecting 100 s
+mul-throughput<QuarticExtension<GoldilocksField>>
+                        time:   [2.7394 µs 2.7934 µs 2.8579 µs]
+                        change: [-34.432% -31.974% -29.474%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  7 (7.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking mul-latency<QuarticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking mul-latency<QuarticExtension<GoldilocksField>>: Collecting 100 samp
+mul-latency<QuarticExtension<GoldilocksField>>
+                        time:   [2.9001 µs 2.9453 µs 3.0001 µs]
+                        change: [-50.164% -38.728% -28.125%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 10 outliers among 100 measurements (10.00%)
+  6 (6.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking sqr-throughput<QuarticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking sqr-throughput<QuarticExtension<GoldilocksField>>: Collecting 100 s
+sqr-throughput<QuarticExtension<GoldilocksField>>
+                        time:   [2.2949 µs 2.3590 µs 2.4354 µs]
+                        change: [-47.570% -43.714% -39.719%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 12 outliers among 100 measurements (12.00%)
+  7 (7.00%) high mild
+  5 (5.00%) high severe
+
+Benchmarking sqr-latency<QuarticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking sqr-latency<QuarticExtension<GoldilocksField>>: Collecting 100 samp
+sqr-latency<QuarticExtension<GoldilocksField>>
+                        time:   [2.1582 µs 2.2196 µs 2.2890 µs]
+                        change: [-37.900% -35.262% -32.698%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 11 outliers among 100 measurements (11.00%)
+  3 (3.00%) high mild
+  8 (8.00%) high severe
+
+Benchmarking add-throughput<QuarticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking add-throughput<QuarticExtension<GoldilocksField>>: Collecting 100 s
+add-throughput<QuarticExtension<GoldilocksField>>
+                        time:   [482.03 ns 500.54 ns 521.19 ns]
+                        change: [-44.314% -39.920% -35.812%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking add-latency<QuarticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking add-latency<QuarticExtension<GoldilocksField>>: Collecting 100 samp
+add-latency<QuarticExtension<GoldilocksField>>
+                        time:   [312.50 ns 322.14 ns 332.38 ns]
+                        change: [-51.694% -42.029% -34.148%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  4 (4.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking try_inverse<QuarticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking try_inverse<QuarticExtension<GoldilocksField>>: Collecting 100 samp
+try_inverse<QuarticExtension<GoldilocksField>>
+                        time:   [441.07 ns 448.48 ns 456.47 ns]
+                        change: [-28.174% -23.841% -20.115%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  6 (6.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-tiny<QuarticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuarticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuarticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuarticExtension<GoldilocksField>
+batch_multiplicative_inverse-tiny<QuarticExtension<GoldilocksField>>
+                        time:   [739.28 ns 841.62 ns 958.32 ns]
+                        change: [-29.449% -12.144% +3.5809%] (p = 0.27 > 0.05)
+                        No change in performance detected.
+Found 8 outliers among 100 measurements (8.00%)
+  2 (2.00%) high mild
+  6 (6.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-small<QuarticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuarticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuarticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuarticExtension<GoldilocksField
+batch_multiplicative_inverse-small<QuarticExtension<GoldilocksField>>
+                        time:   [1.0815 µs 1.1941 µs 1.3327 µs]
+                        change: [-0.8588% +9.1193% +20.227%] (p = 0.08 > 0.05)
+                        No change in performance detected.
+Found 13 outliers among 100 measurements (13.00%)
+  3 (3.00%) high mild
+  10 (10.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-medium<QuarticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuarticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuarticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuarticExtension<GoldilocksFiel
+batch_multiplicative_inverse-medium<QuarticExtension<GoldilocksField>>
+                        time:   [1.9497 µs 2.0057 µs 2.0655 µs]
+                        change: [-29.730% -26.024% -22.791%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 2 outliers among 100 measurements (2.00%)
+  1 (1.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-large<QuarticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-large<QuarticExtension<GoldilocksField>>: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 8.6s, enable flat sampling, or reduce sample count to 50.
+Benchmarking batch_multiplicative_inverse-large<QuarticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-large<QuarticExtension<GoldilocksField
+batch_multiplicative_inverse-large<QuarticExtension<GoldilocksField>>
+                        time:   [25.868 µs 26.585 µs 27.377 µs]
+                        change: [-52.127% -43.168% -33.382%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  6 (6.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-huge<QuarticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-huge<QuarticExtension<GoldilocksField>>: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 45.3s, or reduce sample count to 10.
+Benchmarking batch_multiplicative_inverse-huge<QuarticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-huge<QuarticExtension<GoldilocksField>
+batch_multiplicative_inverse-huge<QuarticExtension<GoldilocksField>>
+                        time:   [6.0181 ms 6.1607 ms 6.3269 ms]
+                        change: [-33.621% -30.014% -26.203%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 12 outliers among 100 measurements (12.00%)
+  6 (6.00%) high mild
+  6 (6.00%) high severe
+
+Benchmarking mul-throughput<QuinticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking mul-throughput<QuinticExtension<GoldilocksField>>: Collecting 100 s
+mul-throughput<QuinticExtension<GoldilocksField>>
+                        time:   [3.7442 µs 3.8636 µs 4.0094 µs]
+                        change: [-19.831% -15.987% -12.028%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  4 (4.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking mul-latency<QuinticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking mul-latency<QuinticExtension<GoldilocksField>>: Collecting 100 samp
+mul-latency<QuinticExtension<GoldilocksField>>
+                        time:   [3.8899 µs 4.3438 µs 4.9761 µs]
+                        change: [-31.725% -24.873% -16.907%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 11 outliers among 100 measurements (11.00%)
+  7 (7.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking sqr-throughput<QuinticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking sqr-throughput<QuinticExtension<GoldilocksField>>: Collecting 100 s
+sqr-throughput<QuinticExtension<GoldilocksField>>
+                        time:   [3.5591 µs 3.7782 µs 4.0705 µs]
+                        change: [-42.043% -37.186% -32.681%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  5 (5.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking sqr-latency<QuinticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking sqr-latency<QuinticExtension<GoldilocksField>>: Collecting 100 samp
+sqr-latency<QuinticExtension<GoldilocksField>>
+                        time:   [3.1644 µs 3.1825 µs 3.2044 µs]
+                        change: [-33.607% -28.044% -23.406%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  4 (4.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking add-throughput<QuinticExtension<GoldilocksField>>: Warming up for 3
+Benchmarking add-throughput<QuinticExtension<GoldilocksField>>: Collecting 100 s
+add-throughput<QuinticExtension<GoldilocksField>>
+                        time:   [580.89 ns 614.12 ns 653.02 ns]
+                        change: [-32.559% -27.211% -21.730%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 6 outliers among 100 measurements (6.00%)
+  2 (2.00%) high mild
+  4 (4.00%) high severe
+
+Benchmarking add-latency<QuinticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking add-latency<QuinticExtension<GoldilocksField>>: Collecting 100 samp
+add-latency<QuinticExtension<GoldilocksField>>
+                        time:   [369.18 ns 380.87 ns 395.01 ns]
+                        change: [-23.237% -18.867% -13.570%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 10 outliers among 100 measurements (10.00%)
+  9 (9.00%) high mild
+  1 (1.00%) high severe
+
+Benchmarking try_inverse<QuinticExtension<GoldilocksField>>: Warming up for 3.00
+Benchmarking try_inverse<QuinticExtension<GoldilocksField>>: Collecting 100 samp
+try_inverse<QuinticExtension<GoldilocksField>>
+                        time:   [492.88 ns 500.63 ns 509.53 ns]
+                        change: [-27.312% -22.014% -17.279%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  5 (5.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-tiny<QuinticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuinticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuinticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-tiny<QuinticExtension<GoldilocksField>
+batch_multiplicative_inverse-tiny<QuinticExtension<GoldilocksField>>
+                        time:   [648.24 ns 661.93 ns 676.66 ns]
+                        change: [-32.399% -19.710% -9.8365%] (p = 0.01 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+
+Benchmarking batch_multiplicative_inverse-small<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-small<QuinticExtension<GoldilocksField
+batch_multiplicative_inverse-small<QuinticExtension<GoldilocksField>>
+                        time:   [903.66 ns 937.17 ns 972.18 ns]
+                        change: [-29.091% -26.028% -22.988%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  5 (5.00%) high mild
+  3 (3.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-medium<QuinticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuinticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuinticExtension<GoldilocksFiel
+Benchmarking batch_multiplicative_inverse-medium<QuinticExtension<GoldilocksFiel
+batch_multiplicative_inverse-medium<QuinticExtension<GoldilocksField>>
+                        time:   [2.4349 µs 2.5393 µs 2.6427 µs]
+                        change: [-41.969% -37.324% -32.755%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 3 outliers among 100 measurements (3.00%)
+  3 (3.00%) high mild
+
+Benchmarking batch_multiplicative_inverse-large<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-large<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-large<QuinticExtension<GoldilocksField
+Benchmarking batch_multiplicative_inverse-large<QuinticExtension<GoldilocksField
+batch_multiplicative_inverse-large<QuinticExtension<GoldilocksField>>
+                        time:   [29.616 µs 30.296 µs 31.103 µs]
+                        change: [-23.881% -20.670% -17.582%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 8 outliers among 100 measurements (8.00%)
+  6 (6.00%) high mild
+  2 (2.00%) high severe
+
+Benchmarking batch_multiplicative_inverse-huge<QuinticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-huge<QuinticExtension<GoldilocksField>>: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 52.9s, or reduce sample count to 10.
+Benchmarking batch_multiplicative_inverse-huge<QuinticExtension<GoldilocksField>
+Benchmarking batch_multiplicative_inverse-huge<QuinticExtension<GoldilocksField>
+batch_multiplicative_inverse-huge<QuinticExtension<GoldilocksField>>
+                        time:   [12.924 ms 14.488 ms 16.196 ms]
+                        change: [+28.618% +46.747% +67.513%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 7 outliers among 100 measurements (7.00%)
+  5 (5.00%) high mild
+  2 (2.00%) high severe
+
+     Running benches/hashing.rs (target/release/deps/hashing-d8c46eb65ad2a92c)
+Benchmarking poseidon<GoldilocksField, 12>: Collecting 100 samples in estimated
+poseidon<GoldilocksField, 12>
+                        time:   [2.8221 µs 2.9026 µs 2.9948 µs]
+                        change: [-27.298% -23.329% -19.163%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 9 outliers among 100 measurements (9.00%)
+  9 (9.00%) high mild
+
+Benchmarking keccak256: Collecting 100 samples in estimated 5.0117 s (970k itera
+keccak256               time:   [795.60 ns 809.37 ns 825.08 ns]
+                        change: [-29.700% -26.600% -23.414%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  6 (6.00%) high mild
+  1 (1.00%) high severe
+
+     Running benches/merkle.rs (target/release/deps/merkle-5fc4225c7a4fc33f)
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/8192: Warming up for 3.0000 s
+Warning: Unable to complete 10 samples in 5.0s. You may wish to increase target time to 7.4s or enable flat sampling.
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/8192: Collecting 10 samp
+merkle-tree<GoldilocksField, PoseidonHash>/8192
+                        time:   [131.69 ms 139.46 ms 145.81 ms]
+                        change: [-27.398% -19.771% -10.617%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/16384: Warming up for 3.
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/16384: Collecting 10 sam
+merkle-tree<GoldilocksField, PoseidonHash>/16384
+                        time:   [384.67 ms 439.95 ms 497.38 ms]
+                        change: [-48.950% -40.066% -30.883%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/32768: Warming up for 3.0000 s
+Warning: Unable to complete 10 samples in 5.0s. You may wish to increase target time to 8.3s.
+Benchmarking merkle-tree<GoldilocksField, PoseidonHash>/32768: Collecting 10 sam
+merkle-tree<GoldilocksField, PoseidonHash>/32768
+                        time:   [549.09 ms 576.37 ms 604.44 ms]
+                        change: [-58.308% -54.970% -51.377%] (p = 0.00 < 0.05)
+                        Performance has improved.
+
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/8192: Warming up for 3.000
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/8192: Collecting 10 sample
+merkle-tree<GoldilocksField, KeccakHash>/8192
+                        time:   [26.598 ms 28.155 ms 29.707 ms]
+                        change: [-70.704% -67.107% -62.735%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/16384: Warming up for 3.00
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/16384: Collecting 10 sampl
+merkle-tree<GoldilocksField, KeccakHash>/16384
+                        time:   [53.342 ms 55.474 ms 57.639 ms]
+                        change: [-50.551% -44.372% -36.705%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/32768: Warming up for 3.0000 s
+Warning: Unable to complete 10 samples in 5.0s. You may wish to increase target time to 6.4s or enable flat sampling.
+Benchmarking merkle-tree<GoldilocksField, KeccakHash>/32768: Collecting 10 sampl
+merkle-tree<GoldilocksField, KeccakHash>/32768
+                        time:   [110.16 ms 116.13 ms 122.57 ms]
+                        change: [-47.616% -42.465% -36.357%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 10 measurements (10.00%)
+  1 (10.00%) high mild
+
+     Running benches/reverse_index_bits.rs (target/release/deps/reverse_index_bits-42dd89675fbc8f78)
+Benchmarking reverse-index-bits-in-place/256: Collecting 100 samples in estimate
+reverse-index-bits-in-place/256
+                        time:   [357.00 ns 366.18 ns 378.20 ns]
+                        change: [-45.741% -36.833% -27.473%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 11 outliers among 100 measurements (11.00%)
+  9 (9.00%) high mild
+  2 (2.00%) high severe
+Benchmarking reverse-index-bits-in-place/65536: Collecting 100 samples in estima
+reverse-index-bits-in-place/65536
+                        time:   [104.48 µs 141.63 µs 196.98 µs]
+                        change: [-10.642% +4.1017% +22.453%] (p = 0.68 > 0.05)
+                        No change in performance detected.
+Found 14 outliers among 100 measurements (14.00%)
+  5 (5.00%) high mild
+  9 (9.00%) high severe
+Benchmarking reverse-index-bits-in-place/16777216: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 5.6s, or reduce sample count to 80.
+Benchmarking reverse-index-bits-in-place/16777216: Collecting 100 samples in est
+reverse-index-bits-in-place/16777216
+                        time:   [75.609 ms 89.559 ms 107.74 ms]
+                        change: [-13.990% +7.7412% +36.139%] (p = 0.56 > 0.05)
+                        No change in performance detected.
+Found 10 outliers among 100 measurements (10.00%)
+  2 (2.00%) high mild
+  8 (8.00%) high severe
+
+Benchmarking reverse-index-bits/256: Collecting 100 samples in estimated 5.0020
+reverse-index-bits/256  time:   [641.68 ns 699.61 ns 768.26 ns]
+                        change: [+13.066% +18.127% +24.635%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 7 outliers among 100 measurements (7.00%)
+  5 (5.00%) high mild
+  2 (2.00%) high severe
+Benchmarking reverse-index-bits/65536: Collecting 100 samples in estimated 5.230
+reverse-index-bits/65536
+                        time:   [254.99 µs 263.05 µs 273.55 µs]
+                        change: [-5.0842% +0.0087% +5.1035%] (p = 1.00 > 0.05)
+                        No change in performance detected.
+Found 10 outliers among 100 measurements (10.00%)
+  4 (4.00%) high mild
+  6 (6.00%) high severe
+Benchmarking reverse-index-bits/16777216: Warming up for 3.0000 s
+Warning: Unable to complete 100 samples in 5.0s. You may wish to increase target time to 47.7s, or reduce sample count to 10.
+Benchmarking reverse-index-bits/16777216: Collecting 100 samples in estimated 47
+reverse-index-bits/16777216
+                        time:   [500.96 ms 532.45 ms 567.46 ms]
+                        change: [-7.0976% +9.9964% +27.701%] (p = 0.26 > 0.05)
+                        No change in performance detected.
+Found 7 outliers among 100 measurements (7.00%)
+  4 (4.00%) high mild
+  3 (3.00%) high severe
+
+     Running benches/transpose.rs (target/release/deps/transpose-1b9e6dd332a838cf)
+Benchmarking transpose/5: Collecting 100 samples in estimated 5.2984 s (1500 ite
+transpose/5             time:   [3.0131 ms 3.3676 ms 3.7696 ms]
+                        change: [-92.269% -90.075% -86.843%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 15 outliers among 100 measurements (15.00%)
+  8 (8.00%) high mild
+  7 (7.00%) high severe
+Benchmarking transpose/50: Collecting 100 samples in estimated 5.0392 s (800 ite
+transpose/50            time:   [9.4928 ms 10.840 ms 12.334 ms]
+                        change: [-38.621% -21.738% -0.7445%] (p = 0.06 > 0.05)
+                        No change in performance detected.
+Found 14 outliers among 100 measurements (14.00%)
+  4 (4.00%) high mild
+  10 (10.00%) high severe
+Benchmarking transpose/100: Collecting 100 samples in estimated 5.2227 s (400 it
+transpose/100           time:   [14.479 ms 16.941 ms 20.032 ms]
+                        change: [-26.035% -9.7500% +10.632%] (p = 0.34 > 0.05)
+                        No change in performance detected.
+Found 12 outliers among 100 measurements (12.00%)
+  6 (6.00%) high mild
+  6 (6.00%) high severe
+Benchmarking transpose/150: Collecting 100 samples in estimated 6.3090 s (400 it
+transpose/150           time:   [19.968 ms 20.946 ms 22.080 ms]
+                        change: [-35.827% -25.964% -15.318%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 7 outliers among 100 measurements (7.00%)
+  3 (3.00%) high mild
+  4 (4.00%) high severe
+
+     Running unittests src/lib.rs (target/release/deps/plonky2_field-e745aa2dfc9cc0b9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/release/deps/plonky2_maybe_rayon-e6aecd61eaef64bd)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/release/deps/plonky2_util-bfe0ba32d0578f9c)
+
+running 7 tests
+test tests::test_log2_ceil ... ignored
+test tests::test_log2_strict ... ignored
+test tests::test_log2_strict_nonpower_2 - should panic ... ignored
+test tests::test_log2_strict_usize_max - should panic ... ignored
+test tests::test_log2_strict_zero - should panic ... ignored
+test tests::test_reverse_index_bits ... ignored
+test tests::test_reverse_index_bits_in_place ... ignored
+
+test result: ok. 0 passed; 0 failed; 7 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/release/deps/starky-eb7cdbe29e8c7963)
+
+running 15 tests
+test config::tests::test_invalid_config ... ignored
+test config::tests::test_valid_config ... ignored
+test fibonacci_stark::tests::test_fibonacci_stark ... ignored
+test fibonacci_stark::tests::test_fibonacci_stark_circuit ... ignored
+test fibonacci_stark::tests::test_fibonacci_stark_degree ... ignored
+test fibonacci_stark::tests::test_recursive_stark_verifier ... ignored
+test permutation_stark::tests::test_pemutations_stark ... ignored
+test permutation_stark::tests::test_permutation_stark_circuit ... ignored
+test permutation_stark::tests::test_permutation_stark_degree ... ignored
+test permutation_stark::tests::test_recursive_stark_verifier ... ignored
+test unconstrained_stark::tests::test_recursive_stark_verifier ... ignored
+test unconstrained_stark::tests::test_unconstrained_stark ... ignored
+test unconstrained_stark::tests::test_unconstrained_stark_circuit ... ignored
+test unconstrained_stark::tests::test_unconstrained_stark_degree ... ignored
+test verifier::tests::test_eval_l_0_and_l_last ... ignored
+
+test result: ok. 0 passed; 0 failed; 15 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
